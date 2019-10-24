@@ -32,7 +32,7 @@ static int test_pass = 0;
 #if defined(_MSC_VER)
 #define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%Iu")
 #else
-#define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%zu")
+#define EXPECT_EQ_SIZE_T(expect, actual) EXPECT_EQ_BASE((expect) == (actual), (size_t)expect, (size_t)actual, "%u")
 #endif
 
 static void test_parse_null() {
@@ -591,7 +591,7 @@ static void test_access_array() {
     for (i = 0; i < 6; i++)
         EXPECT_EQ_DOUBLE((double)i + 2, lept_get_number(lept_get_array_element(&a, i)));
 
-#if 0
+#if 1
     for (i = 0; i < 2; i++) {
         lept_init(&e);
         lept_set_number(&e, i);
@@ -599,7 +599,7 @@ static void test_access_array() {
         lept_free(&e);
     }
 #endif
-    
+
     EXPECT_EQ_SIZE_T(8, lept_get_array_size(&a));
     for (i = 0; i < 8; i++)
         EXPECT_EQ_DOUBLE((double)i, lept_get_number(lept_get_array_element(&a, i)));
@@ -626,7 +626,7 @@ static void test_access_array() {
 }
 
 static void test_access_object() {
-#if 0
+#if 1
     lept_value o, v, *pv;
     size_t i, j, index;
 
@@ -655,7 +655,7 @@ static void test_access_object() {
         }
     }
 
-    index = lept_find_object_index(&o, "j", 1);    
+    index = lept_find_object_index(&o, "j", 1);
     EXPECT_TRUE(index != LEPT_KEY_NOT_EXIST);
     lept_remove_object_value(&o, index);
     index = lept_find_object_index(&o, "j", 1);
