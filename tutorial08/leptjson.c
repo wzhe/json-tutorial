@@ -437,6 +437,7 @@ void lept_copy(lept_value* dst, const lept_value* src) {
                 memcpy(dst->u.o.m[i].k = (char*)malloc(src->u.o.m[i].klen + 1), src->u.o.m[i].k, src->u.o.m[i].klen);
                 dst->u.o.m[i].klen = src->u.o.m[i].klen;
                 dst->u.o.m[i].k[dst->u.o.m[i].klen] = '\0';
+                lept_init(&dst->u.o.m[i].v);
                 lept_copy(&dst->u.o.m[i].v, &src->u.o.m[i].v);
             }
             dst->u.o.size = src->u.o.size;
